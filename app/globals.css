@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-inter: var(--font-inter);
+  --font-poppins: var(--font-poppins);
 
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    /* Light Theme - Clean Tech */
+    --background: #f8fafc;
+    /* Slate 50 */
+    --foreground: #0f172a;
+    /* Slate 900 */
+    --primary: #6366f1;
+    /* Indigo 500 */
+    --secondary: #0ea5e9;
+    /* Sky 500 */
+    --accent: #ec4899;
+    /* Pink 500 */
+    --card: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Dark Theme - Cosmic Glass */
+  .dark {
+    --background: #030014;
+    /* Deep Space */
+    --foreground: #ffffff;
+    --primary: #8b5cf6;
+    /* Violet Neon */
+    --secondary: #0ea5e9;
+    /* Cyan Neon */
+    --accent: #ec4899;
+    /* Pink Neon */
+    --card: rgba(42, 14, 97, 0.3);
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300 overflow-x-hidden;
+  }
+
+  /* Background gradients handled specifically to allow light mode overwrite */
+  .dark body {
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 0% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply backdrop-blur-xl transition-all duration-300;
+    /* Light mode glass */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .dark .glass-card {
+    /* Dark mode cosmic glass */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  }
+
+  .text-glow {
+    @apply transition-all duration-300;
+    text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+    /* Softer glow for light */
+  }
+
+  .dark .text-glow {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    /* Intense glow for dark */
+  }
+
+  .neon-border {
+    position: relative;
+  }
+
+  .neon-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+    opacity: 0.5;
+    border-radius: inherit;
+    filter: blur(10px);
+    transition: opacity 0.3s;
+  }
 }
