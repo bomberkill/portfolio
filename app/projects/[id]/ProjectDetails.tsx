@@ -1,31 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowLeft, ExternalLink, Download, Layers, Users, Target, Rocket } from 'lucide-react';
 import { GithubIcon } from '@/components/Icons';
 import { projects } from '@/lib/data';
-import { Project } from '@/types/project';
+import { LocalizedText } from '@/types/project';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function ProjectDetails({ id }: { id: string }) {
-    const [project, setProject] = useState<Project | null>(null);
     const { language } = useLanguage();
-
-    useEffect(() => {
-        const found = projects.find(p => p.id === parseInt(id));
-        if (found) {
-            setProject(found);
-        } else {
-            // Handle 404 potentially
-        }
-    }, [id]);
+    const project = projects.find(p => p.id === parseInt(id));
 
     if (!project) return <div className="min-h-screen flex items-center justify-center text-foreground">Loading...</div>;
 
     // Helper to safely access localized text
-    const getLocalized = (content: any) => {
+    const getLocalized = (content: LocalizedText | string | undefined) => {
+        if (!content) return '';
         if (typeof content === 'string') return content;
         return content[language] || content['en']; // Fallback
     };

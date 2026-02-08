@@ -19,7 +19,7 @@ export const projects: Project[] = [
         },
         team: "Solo",
         tech: ["React Native", "Expo", "SQLite", "Google Mobile Ads"],
-        image: "url('/fast-invoice-google-play.png')",
+        image: "url('/fast-invoice-google-play.jpg')",
         links: {
             github: "https://github.com/bomberkill/fast-invoice"
         }
@@ -42,7 +42,7 @@ export const projects: Project[] = [
         },
         team: "Solo",
         tech: ["React Native", "Expo", "Google GenAI", "Zustand"],
-        image: "url('/sms-broadcast-google-play.png')",
+        image: "url('/sms-broadcast-google-play.jpg')",
         links: {
             github: "https://github.com/bomberkill/smsbroadcast"
         }
@@ -164,7 +164,7 @@ export const projects: Project[] = [
             "Framer Motion",
             "Nodemailer (SMTP Pool)"
         ],
-        image: "url('/angels-closet-logo.png')",
+        image: "url('/angels-closet-logo.jpg')",
         links: {
             live: "https://angelsclosets.com",
             github: "https://github.com/bomberkill/angels-closet-web"

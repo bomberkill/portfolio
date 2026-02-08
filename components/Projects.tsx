@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Layers, ArrowRight } from 'lucide-react';
+import { ExternalLink, ArrowRight } from 'lucide-react';
 import { GithubIcon } from '@/components/Icons';
 import { useLanguage } from '@/context/LanguageContext';
 import { projects } from '@/lib/data';

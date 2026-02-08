@@ -27,10 +27,10 @@ const Contact = () => {
 
                     <a
                         href={`mailto:${contactEmail}`}
-                        className="inline-flex items-center space-x-4 px-8 py-4 bg-primary text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-primary/90 hover:scale-105 transition-all mb-12"
+                        className="inline-flex items-center justify-center space-x-2 md:space-x-4 px-5 py-3 md:px-8 md:py-4 bg-primary text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-primary/90 hover:scale-105 transition-all mb-12 max-w-full"
                     >
-                        <Mail size={24} />
-                        <span className="text-lg">{contactEmail}</span>
+                        <Mail className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+                        <span className="text-sm md:text-lg truncate">{contactEmail}</span>
                     </a>
 
                     <div className="flex justify-center space-x-6">

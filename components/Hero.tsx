@@ -107,15 +107,15 @@ const Hero = () => {
                             <div className="div pl-6 border-l border-foreground/10 ml-1">
                                 <div className="py-1">
                                     <span className="text-primary mr-2">currentStack:</span>
-                                    <span className="text-yellow-600 dark:text-yellow-300">['React', 'Next.js', 'Node']</span>,
+                                    <span className="text-yellow-600 dark:text-yellow-300">[&apos;React&apos;, &apos;Next.js&apos;, &apos;Node&apos;]</span>,
                                 </div>
                                 <div className="py-1">
                                     <span className="text-primary mr-2">passion:</span>
-                                    <span className="text-green-600 dark:text-green-400">'Creative Coding'</span>,
+                                    <span className="text-green-600 dark:text-green-400">&apos;Creative Coding&apos;</span>,
                                 </div>
                                 <div className="py-1">
                                     <span className="text-primary mr-2">mission:</span>
-                                    <span className="text-orange-600 dark:text-orange-400">'Build Future'</span>
+                                    <span className="text-orange-600 dark:text-orange-400">&apos;Build Future&apos;</span>
                                 </div>
                             </div>
                             <div className="flex">
