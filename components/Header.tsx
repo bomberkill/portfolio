@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { Link as ScrollLink } from 'react-scroll';
 import { useTheme } from 'next-themes';
 import { useLanguage } from '@/context/LanguageContext';
@@ -16,12 +16,15 @@ const Header = () => {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
+        const timer = setTimeout(() => setMounted(true), 0);
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            clearTimeout(timer);
+        };
     }, []);
 
     const navLinks = [

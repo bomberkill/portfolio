@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Code, Server, Smartphone, Layout, Cpu, Globe } from 'lucide-react';
+import { Server, Smartphone, Layout, Cpu, Globe } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const About = () => {
