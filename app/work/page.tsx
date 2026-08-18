@@ -1,9 +1,14 @@
 import { Metadata } from 'next';
 import WorkIndexClient from './WorkIndexClient';
 
+const title = 'Work';
+const description = 'Products and case studies — ReachDem, PMS Connect, and more.';
+
 export const metadata: Metadata = {
-    title: 'Work | Portfolio',
-    description: 'All products and case studies.',
+    title,
+    description,
+    openGraph: { title: `${title} | Ronald Kamgaing`, description },
+    twitter: { title: `${title} | Ronald Kamgaing`, description },
 };
 
 export default function WorkPage() {

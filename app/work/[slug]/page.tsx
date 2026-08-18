@@ -11,12 +11,17 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
     const project = projects.find((p) => p.slug === slug);
 
     if (!project || !project.caseStudy) {
-        return { title: 'Not found | Portfolio' };
+        return { title: 'Not found' };
     }
 
+    const title = project.title;
+    const description = project.caseStudy.result.en;
+
     return {
-        title: `${project.title} | Portfolio`,
-        description: project.caseStudy.result.en,
+        title,
+        description,
+        openGraph: { title: `${title} | Ronald Kamgaing`, description },
+        twitter: { title: `${title} | Ronald Kamgaing`, description },
     };
 }
 
