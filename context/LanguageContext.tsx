@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type Language = 'fr' | 'en';
 
@@ -13,33 +13,34 @@ interface LanguageContextType {
 const translations = {
     fr: {
         // Header
-        'nav.home': 'Accueil',
         'nav.about': 'À propos',
         'nav.projects': 'Projets',
         'nav.contact': 'Contact',
 
         // Hero
-        'hero.greeting': 'Bonjour, je suis',
-        'hero.role': 'Développeur Web & Mobile',
-        'hero.description': 'Je conçois des expériences digitales minimalistes, performantes et intuitives.',
-        'hero.projects': 'Voir mes projets',
-        'hero.contact': 'Me contacter',
+        'hero.positioning': "Je conçois et je livre des produits de messagerie et de prospection — mobile, web et les API qui les font tourner. Je construis actuellement ReachDem.",
+        'hero.work': 'Travail',
+        'hero.email': 'Email',
+
+        // Currently
+        'currently.label': 'Actuellement',
+        'currently.text': "Je construis actuellement ReachDem — un système d'exploitation marketing pour la prospection directe. Campagnes email et SMS, groupes et segments de contacts, boîte de réception partagée, analyses de livraison et API publique, dans un seul tableau de bord.",
 
         // About
         'about.title': 'À propos de moi',
         'about.subtitle': 'Qui suis-je ?',
-        'about.text1': "Développeur passionné avec une expertise couvrant l'ensemble du spectre web et mobile. J'aime transformer des problèmes complexes en interfaces simples, intuitives et performantes.",
-        'about.text2': "Mon approche privilégie code propre, architecture scalable et expérience utilisateur fluide. Que ce soit pour une application mobile grand public ou un dashboard analytique complexe, je m'engage à livrer des produits de haute qualité.",
-        'about.more': 'En savoir plus sur mon parcours',
+        'about.text1': "Développeur fullstack et CTO avec plus de 4 ans d'expérience dans la construction d'applications web et mobiles hautement performantes, de bout en bout. Je me spécialise dans React, Next.js, React Native, et les back-ends Node.js / NestJS, en livrant des plateformes SaaS scalables, des API sécurisées et une infrastructure cloud.",
+        'about.text2': "J'allie ingénierie de terrain et leadership technique pour livrer des produits fiables dans des environnements qui évoluent vite — actuellement CTO et co-fondateur chez ReachDem.",
+        'about.cv': 'Télécharger le CV',
+        'about.experience': 'Expérience',
+        'about.education': 'Formation',
+        'about.skills': 'Compétences',
 
         // Projects
         'projects.title': 'Mes Projets',
-        'projects.filter.all': 'Tous',
-        'projects.filter.web': 'Web',
-        'projects.filter.mobile': 'Mobile',
-        'projects.filter.backend': 'Backend',
         'projects.viewCode': 'Voir le Code',
         'projects.viewSite': 'voir le Site',
+        'work.seeAll': 'Voir tout le travail',
 
         // Contact
         'contact.title': 'Me Contacter',
@@ -48,39 +49,46 @@ const translations = {
         // Footer
         'footer.rights': 'Tous droits réservés.',
         'footer.madeWith': 'Fait avec passion et du code.',
+        'footer.updated': 'Dernière mise à jour : août 2026',
+
+        // 404
+        'notfound.title': 'Page introuvable',
+        'notfound.message': "La page que vous cherchez n'existe pas.",
+        'notfound.cta': "Retour à l'accueil",
 
         // General Attributes via Components potentially
         'general.available': 'Disponible pour missions',
     },
     en: {
         // Header
-        'nav.home': 'Home',
         'nav.about': 'About',
         'nav.projects': 'Projects',
         'nav.contact': 'Contact',
 
         // Hero
-        'hero.greeting': 'Hello, I am',
-        'hero.role': 'Web & Mobile Developer',
-        'hero.description': 'I design minimalist, high-performance, and intuitive digital experiences.',
-        'hero.projects': 'View my projects',
-        'hero.contact': 'Contact me',
+        'hero.positioning': 'I build and ship messaging and outreach products — mobile, web and the APIs behind them. Currently building ReachDem.',
+        'hero.work': 'Work',
+        'hero.email': 'Email',
+
+        // Currently
+        'currently.label': 'Currently',
+        'currently.text': 'Currently building ReachDem — a marketing operating system for direct outreach. Email and SMS campaigns, contact groups and segments, a shared inbox, delivery analytics and a public API, in one dashboard.',
 
         // About
         'about.title': 'About Me',
         'about.subtitle': 'Who am I?',
-        'about.text1': 'Passionate developer with expertise covering the entire web and mobile spectrum. I love transforming complex problems into simple, intuitive, and high-performance interfaces.',
-        'about.text2': 'My approach prioritizes clean code, scalable architecture, and fluid user experience. Whether for a consumer mobile app or a complex analytics dashboard, I am committed to delivering high-quality products.',
-        'about.more': 'Learn more about my journey',
+        'about.text1': 'Full-stack developer and CTO with 4+ years building high-performance web and mobile applications end to end. I specialize in React, Next.js, React Native, and Node.js / NestJS back-ends, delivering scalable SaaS platforms, secure APIs, and cloud infrastructure.',
+        'about.text2': 'I pair hands-on engineering with technical leadership to ship reliable products in fast-moving environments — currently CTO and co-founder at ReachDem.',
+        'about.cv': 'Download CV',
+        'about.experience': 'Experience',
+        'about.education': 'Education',
+        'about.skills': 'Skills',
 
         // Projects
         'projects.title': 'My Projects',
-        'projects.filter.all': 'All',
-        'projects.filter.web': 'Web',
-        'projects.filter.mobile': 'Mobile',
-        'projects.filter.backend': 'Backend',
         'projects.viewCode': 'View Code',
         'projects.viewSite': 'View Site',
+        'work.seeAll': 'See all work',
 
         // Contact
         'contact.title': 'Contact Me',
@@ -89,6 +97,12 @@ const translations = {
         // Footer
         'footer.rights': 'All rights reserved.',
         'footer.madeWith': 'Made with passion and code.',
+        'footer.updated': 'Last updated: Aug 2026',
+
+        // 404
+        'notfound.title': 'Page not found',
+        'notfound.message': "The page you're looking for doesn't exist.",
+        'notfound.cta': 'Return home',
 
         // General
         'general.available': 'Available for work',
@@ -98,7 +112,29 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-    const [language, setLanguage] = useState<Language>('fr');
+    const [language, setLanguageState] = useState<Language>('fr');
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            const stored = localStorage.getItem('language');
+            if (stored === 'fr' || stored === 'en') {
+                setLanguageState(stored);
+                return;
+            }
+            const browserLang = navigator.language || navigator.languages?.[0] || '';
+            setLanguageState(browserLang.toLowerCase().startsWith('fr') ? 'fr' : 'en');
+        }, 0);
+        return () => clearTimeout(timer);
+    }, []);
+
+    useEffect(() => {
+        document.documentElement.lang = language;
+    }, [language]);
+
+    const setLanguage = (lang: Language) => {
+        setLanguageState(lang);
+        localStorage.setItem('language', lang);
+    };
 
     const t = (key: string) => {
         return translations[language][key as keyof typeof translations['fr']] || key;
