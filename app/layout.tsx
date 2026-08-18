@@ -17,14 +17,32 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = 'https://ronaldkamwa.vercel.app';
+const siteTitle = 'Ronald Kamgaing — Fullstack Developer & CTO';
+const siteDescription = 'I build and ship messaging and outreach products — mobile, web and the APIs behind them. Currently building ReachDem.';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    template: '%s | Portfolio',
-    default: 'Portfolio | Full Stack Developer',
+    template: '%s | Ronald Kamgaing',
+    default: siteTitle,
   },
-  description: "Portfolio of a Full Stack Developer specializing in React, Next.js, and Mobile development.",
+  description: siteDescription,
   icons: {
-    icon: '/icon', // Explicitly pointing to the generated icon route if needed, though Next.js handles it auto.
+    icon: '/icon',
+  },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: 'Ronald Kamgaing',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
   },
 };
 
