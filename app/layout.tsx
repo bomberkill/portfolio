@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Schibsted_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from '@/context/LanguageContext';
 import { ThemeProvider } from '@/components/ThemeProvider';
 
-const inter = Inter({
+const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-sans",
   display: "swap",
 });
 
-const poppins = Poppins({
-  weight: ["400", "500", "600", "700"],
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500"],
   subsets: ["latin"],
-  variable: "--font-poppins",
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} ${poppins.variable} scroll-smooth`} suppressHydrationWarning>
-      <body className="antialiased bg-background text-foreground font-inter">
+    <html lang="fr" className={`${schibstedGrotesk.variable} ${jetbrainsMono.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="antialiased bg-background text-foreground font-sans">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
